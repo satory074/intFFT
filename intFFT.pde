@@ -6,15 +6,25 @@ Area graph_area = new Area(
   );
 
 //波
-//                 A   f    信号長
-Wave wave=new Wave(20, 100, 2048);
+//A   f    信号長
+Wave wave = new Wave(30000, 4410, 2048);
+FourierTransform ft = new FourierTransform(wave);
 
 void settings() {
-  size(MARGIN+graph_area.get_width(), MARGIN*2+graph_area.get_height());
+  size(MARGIN + graph_area.get_width(), MARGIN*2 + graph_area.get_height());
 }
 
 void setup() {
-  //wave.generateWave();
+  //float[] imag = new float[wave.getSignalLength()];
+  int[] imag = new int[wave.getSignalLength()];
+
+  ft.fft(wave.get_amplitude(), imag);
+
+  //println(ft.get_wave().get_amplitude());
+  //println(ft.get_wave().get_amplitude());
+
+  for(int i=0; i<ft.get_WINDOW_SIZE(); i++)
+   println(ft.get_spectrum(i)+"");
 }
 
 void draw() {
