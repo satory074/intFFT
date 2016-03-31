@@ -5,7 +5,7 @@ class Wave {
   private int f;//振動数
   private int signal_length;//信号長
   
-  //SyntheticWave synthtic = new SyntheticWave(this);
+  SyntheticWave synthetic;
   
   private int[] amplitude;//振幅
 
@@ -19,8 +19,14 @@ class Wave {
     for (int k=0; k<signal_length; k++) {
       this.amplitude[k] = round(-this.a*sin(2*PI*this.f*k/fs));
     }
+    
+    synthetic = new SyntheticWave(this);
   }
 
+
+  public SyntheticWave get_synthetic(){
+    return this.synthetic;
+  }
 
   public int getSignalLength() {
     return this.signal_length;
@@ -32,5 +38,17 @@ class Wave {
   
   public int get_amplitude(int n){
     return this.amplitude[n];
+  }
+  
+  public int get_a(){
+    return this.a;
+  }
+  
+  public int get_f(){
+    return this.f;
+  }
+  
+  public int get_fs(){
+    return this.fs;
   }
 }

@@ -7,8 +7,10 @@ Area graph_area = new Area(
 
 //波
 //A   f    信号長
-Wave wave = new Wave(30000, 4410, 2048);
-FourierTransform ft = new FourierTransform(wave);
+Wave wave = new Wave(30000, 440, 2048);
+//FourierTransform ft = new FourierTransform(wave.get_amplitude());
+FourierTransform ft = new FourierTransform(wave.get_synthetic().get_sawtooth());
+
 
 void settings() {
   size(MARGIN + graph_area.get_width(), MARGIN*2 + graph_area.get_height());
@@ -18,7 +20,7 @@ void setup() {
   //float[] imag = new float[wave.getSignalLength()];
   int[] imag = new int[wave.getSignalLength()];
 
-  ft.fft(wave.get_amplitude(), imag);
+  ft.fft(wave.get_synthetic().get_sawtooth(), imag);
 
   //println(ft.get_wave().get_amplitude());
   //println(ft.get_wave().get_amplitude());

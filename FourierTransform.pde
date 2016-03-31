@@ -2,18 +2,18 @@ class FourierTransform{
   private int WINDOW_SIZE = 2048;
   private ArrayList<String> c_data = new ArrayList();
   
-  private Wave wave;
+  private int[] amplitude;
   
   private int[] spectrum;
     
-  FourierTransform(Wave wave){
-    this.wave = wave;
+  FourierTransform(int[] amplitude){
+    this.amplitude = amplitude;
     
     this.spectrum = new int[this.WINDOW_SIZE];
   }
   
-  public Wave get_wave(){
-    return this.wave;
+  public int[] get_amplitude(){
+    return this.amplitude;
   }
   
   public int get_WINDOW_SIZE(){
@@ -62,8 +62,8 @@ class FourierTransform{
           if (stage < number_of_stage) {
             x_real[n] = (a_real + b_real);
             x_imag[n] = (a_imag + b_imag);
-            x_real[m] =((a_real - b_real) * c_real - (a_imag - b_imag) * c_imag)>>6;
-            x_imag[m] =((a_imag - b_imag) * c_real + (a_real - b_real) * c_imag)>>6;
+            x_real[m] =((a_real - b_real) * c_real - (a_imag - b_imag) * c_imag)>>7;
+            x_imag[m] =((a_imag - b_imag) * c_real + (a_real - b_real) * c_imag)>>7;
           } else {
             x_real[n] = (a_real + b_real);
             x_imag[n] = (a_imag + b_imag);
