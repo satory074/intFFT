@@ -1,45 +1,45 @@
+/**
+ * フーリエ変換
+ *
+ * @author satory
+ */
 class FourierTransform{
   private int WINDOW_SIZE = 2048;
   private ArrayList<String> c_data = new ArrayList();
   
-  private int[] amplitude;
+  private int[] spectrum = new int[this.WINDOW_SIZE];
   
-  private int[] spectrum;
-    
-  FourierTransform(int[] amplitude){
-    this.amplitude = amplitude;
-    
-    this.spectrum = new int[this.WINDOW_SIZE];
-  }
   
-  public int[] get_amplitude(){
-    return this.amplitude;
-  }
+  /*---Getter---*/
   
   public int get_WINDOW_SIZE(){
     return this.WINDOW_SIZE;
   }
-  
-  public int[] get_spectrum(){
-    return this.spectrum;
-  }
-  
-  public int get_spectrum(int n){
-    return this.spectrum[n];
-  }
 
 
-  public void fft(int[] x_r, int[] x_imag) {
+  /*---Method---*/
+
+  /**
+   * スペクトルをコンソールに出力
+   *
+   * @param  なし
+   *
+   */
+  public void print_spectrum(){
+    for(int i=0; i<ft.get_WINDOW_SIZE(); i++)
+      println(this.spectrum[i]+"");
+  }
+
+  public void int_fft(int[] x_r) {
     int i, j, k, n, m, r, stage, number_of_stage;
     int[] index;
     int a_real, a_imag, b_real, b_imag, c_real, c_imag, real, imag;
+    int[] x_imag = new int[this.WINDOW_SIZE];
 
     int[] x_real = new int[this.WINDOW_SIZE];
     for(int ii=0; ii<this.WINDOW_SIZE; ii++){
       x_real[ii] = x_r[ii];
     }
-    
-    int count= 0;
 
     //FFTの段数
     number_of_stage = (int)(log(this.WINDOW_SIZE)/log(2));
@@ -101,12 +101,12 @@ class FourierTransform{
     saveStrings("data.txt", (String[])this.c_data.toArray(new String[0]));
   }
 
-/* 
-   public void fft(int[] x_r, float[] x_imag) {
+   public void fft(int[] x_r) {
     int i, j, k, n, m, r, stage, number_of_stage;
     int[] index;
     float a_real, a_imag, b_real, b_imag; 
     float c_real, c_imag, real, imag;
+    float[] x_imag = new float[this.WINDOW_SIZE];
     
     float[] x_real = new float[this.WINDOW_SIZE];
     for(int ii=0; ii<this.WINDOW_SIZE; ii++){
@@ -173,5 +173,4 @@ class FourierTransform{
     }
     saveStrings("data.txt", (String[])this.c_data.toArray(new String[0]));
   }
- */
 }
